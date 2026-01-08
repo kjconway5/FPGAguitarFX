@@ -1,0 +1,33 @@
+{
+    "tests": [
+        {
+            "score": 0,
+            "max_score": 0.4,
+            "name": "test_and2.py:test_lint[simulator=verilator]",
+            "output": "    @pytest.mark.parametrize(\"simulator\", [\"verilator\"])\n    @max_score(.4)\n    def test_lint(simulator):\n        # This line must be first\n        parameters = dict(locals())\n        del parameters['simulator']\n>       lint(simulator, timescale, tbpath, parameters)\nNone\ntest_and2.py:55:\u001b[32mINFO    \u001b[0m cocotb:simulator.py:295 Running command: perl /usr/local/bin/verilator -cc --exe -Mdir /workspaces/LogicGateLEDS/gates/and2/lint -DCOCOTB_SIM=1 --top-module and2 --vpi --public-flat-rw --prefix Vtop -o and2 -LDFLAGS -Wl,-rpath,/usr/local/lib/python3.10/dist-packages/cocotb/libs -L/usr/local/lib/python3.10/dist-packages/cocotb/libs -lcocotbvpi_verilator --lint-only --timescale 1ps/1ps /usr/local/lib/python3.10/dist-packages/cocotb/share/lib/verilator/verilator.cpp /workspaces/LogicGateLEDS/gates/and2/and2.sv\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 %Error: Specified --top-module 'and2' was not found in design.\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 %Error: Exiting due to 1 error(s)",
+            "visibility": "visible"
+        },
+        {
+            "score": 0,
+            "max_score": 0.1,
+            "name": "test_and2.py:test_style[simulator=verilator]",
+            "output": "    @pytest.mark.parametrize(\"simulator\", [\"verilator\"])\n    @max_score(.1)\n    def test_style(simulator):\n        # This line must be first\n        parameters = dict(locals())\n        del parameters['simulator']\n>       lint(simulator, timescale, tbpath, parameters, compile_args=[\"--lint-only\", \"-Wwarn-style\", \"-Wno-lint\"])\nNone\ntest_and2.py:63:\u001b[32mINFO    \u001b[0m cocotb:simulator.py:295 Running command: perl /usr/local/bin/verilator -cc --exe -Mdir /workspaces/LogicGateLEDS/gates/and2/lint -DCOCOTB_SIM=1 --top-module and2 --vpi --public-flat-rw --prefix Vtop -o and2 -LDFLAGS -Wl,-rpath,/usr/local/lib/python3.10/dist-packages/cocotb/libs -L/usr/local/lib/python3.10/dist-packages/cocotb/libs -lcocotbvpi_verilator --lint-only -Wwarn-style -Wno-lint --lint-only --timescale 1ps/1ps /usr/local/lib/python3.10/dist-packages/cocotb/share/lib/verilator/verilator.cpp /workspaces/LogicGateLEDS/gates/and2/and2.sv\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 %Error: Specified --top-module 'and2' was not found in design.\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 %Error: Exiting due to 1 error(s)",
+            "visibility": "visible"
+        },
+        {
+            "score": 0,
+            "max_score": 1,
+            "name": "test_and2.py:test_all[simulator=verilator]",
+            "output": "    @pytest.mark.parametrize(\"simulator\", [\"verilator\", \"icarus\"])\n    @max_score(1)\n    def test_all(simulator):\n        # This line must be first\n        parameters = dict(locals())\n        del parameters['simulator']\n>       runner(simulator, timescale, tbpath, parameters)\nNone\ntest_and2.py:71:\u001b[32mINFO    \u001b[0m cocotb:simulator.py:295 Running command: perl /usr/local/bin/verilator -cc --exe -Mdir /workspaces/LogicGateLEDS/gates/and2/build -DCOCOTB_SIM=1 --top-module and2 --vpi --public-flat-rw --prefix Vtop -o and2 -LDFLAGS -Wl,-rpath,/usr/local/lib/python3.10/dist-packages/cocotb/libs -L/usr/local/lib/python3.10/dist-packages/cocotb/libs -lcocotbvpi_verilator -Wno-fatal -DVM_TRACE_FST=1 -DVM_TRACE=1 --trace-fst --trace-structs --timescale 1ps/1ps -DVM_TRACE_FST=1 -DVM_TRACE=1 /usr/local/lib/python3.10/dist-packages/cocotb/share/lib/verilator/verilator.cpp /workspaces/LogicGateLEDS/gates/and2/and2.sv\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 %Error: Specified --top-module 'and2' was not found in design.\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 %Error: Exiting due to 1 error(s)",
+            "visibility": "visible"
+        },
+        {
+            "score": 0,
+            "max_score": 1,
+            "name": "test_and2.py:test_all[simulator=icarus]",
+            "output": "    @pytest.mark.parametrize(\"simulator\", [\"verilator\", \"icarus\"])\n    @max_score(1)\n    def test_all(simulator):\n        # This line must be first\n        parameters = dict(locals())\n        del parameters['simulator']\n>       runner(simulator, timescale, tbpath, parameters)\nNone\ntest_and2.py:71:\u001b[32mINFO    \u001b[0m cocotb:simulator.py:295 Running command: iverilog -o /workspaces/LogicGateLEDS/gates/and2/run/all/icarus/and2.vvp -D COCOTB_SIM=1 -g2012 -s and2 -DVM_TRACE_FST=1 -DVM_TRACE=1 -s iverilog_dump -f /workspaces/LogicGateLEDS/gates/and2/run/all/icarus/timescale.f /workspaces/LogicGateLEDS/gates/and2/and2.sv /workspaces/LogicGateLEDS/gates/and2/run/all/icarus/iverilog_dump.v\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 error: Unable to find the root module \"and2\" in the Verilog source.\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266      : Perhaps ``-s and2'' is incorrect?\n\u001b[1m\u001b[31mERROR   \u001b[0m cocotb:simulator.py:266 2 error(s) during elaboration.",
+            "visibility": "visible"
+        }
+    ],
+    "leaderboard": []
+}
