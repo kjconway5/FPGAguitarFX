@@ -1,6 +1,0 @@
-<testsuites name="results">
-  <testsuite name="all" package="all">
-    <property name="random_seed" value="1770255365" />
-    <testcase name="no_clipping" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="102" time="0.013507366180419922" sim_time_ns="90.002" ratio_time="6663.179097821866" />
-  </testsuite>
-</testsuites>
