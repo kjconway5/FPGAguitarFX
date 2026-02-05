@@ -1,6 +1,0 @@
-{
-    "top": "distortion",
-    "files":
-    ["rtl/distortion/distortion.sv"
-    ]
-}

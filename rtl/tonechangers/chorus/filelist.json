@@ -1,0 +1,6 @@
+{
+    "top": "chorus",
+    "files":
+    ["rtl/tonechangers/chorus/chorus.sv"
+    ]
+}

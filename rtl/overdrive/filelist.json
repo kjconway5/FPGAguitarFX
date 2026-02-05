@@ -1,7 +1,0 @@
-{
-    "top": "overdrive",
-    "files":
-    ["rtl/overdrive/overdrive.sv",
-     "rtl/overdrive/softclip_lut.sv"
-    ]
-}
