@@ -1,0 +1,6 @@
+{
+    "top": "overdrive",
+    "files":
+    ["rtl/overdrive/overdrive.sv"
+    ]
+}
