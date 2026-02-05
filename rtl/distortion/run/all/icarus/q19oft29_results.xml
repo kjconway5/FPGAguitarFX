@@ -1,0 +1,14 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1770255331" />
+    <testcase name="init_test" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="78" time="0.010149478912353516" sim_time_ns="0.001" ratio_time="0.0985272257458304">
+      <failure message="Test failed with RANDOM_SEED=1770255331" />
+    </testcase>
+    <testcase name="no_clipping" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="103" time="0.0001995563507080078" sim_time_ns="0.001" ratio_time="5.011115890083632">
+      <failure message="Test failed with RANDOM_SEED=1770255331" />
+    </testcase>
+    <testcase name="hard_clipping" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="137" time="0.00010657310485839844" sim_time_ns="0.001" ratio_time="9.38323042505593">
+      <failure message="Test failed with RANDOM_SEED=1770255331" />
+    </testcase>
+  </testsuite>
+</testsuites>

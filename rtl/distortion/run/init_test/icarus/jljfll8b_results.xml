@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1770255364" />
+    <testcase name="init_test" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="78" time="0.012645483016967773" sim_time_ns="20.002" ratio_time="1581.7505723712738" />
+  </testsuite>
+</testsuites>

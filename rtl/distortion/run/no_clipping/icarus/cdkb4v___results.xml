@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1770255326" />
+    <testcase name="no_clipping" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="103" time="0.009787321090698242" sim_time_ns="0.001" ratio_time="0.10217300431170982">
+      <failure message="Test failed with RANDOM_SEED=1770255326" />
+    </testcase>
+  </testsuite>
+</testsuites>

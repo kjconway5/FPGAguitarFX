@@ -1,7 +1,6 @@
 {
     "top": "distortion",
     "files":
-    ["rtl/distortion/distortion.sv",
-     "rtl/distortion/softclip_lut.sv"
+    ["rtl/distortion/distortion.sv"
     ]
 }

@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1770255368" />
+    <testcase name="init_test" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="78" time="0.014841556549072266" sim_time_ns="20.002" ratio_time="1347.7023069558231" />
+    <testcase name="no_clipping" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="102" time="0.0015490055084228516" sim_time_ns="100.00200000000001" ratio_time="64558.84078928737" />
+    <testcase name="hard_clipping" classname="test_distortion" file="/workspaces/FPGAguitarFX/rtl/distortion/test_distortion.py" lineno="134" time="0.0016794204711914062" sim_time_ns="100.002" ratio_time="59545.54068824531" />
+  </testsuite>
+</testsuites>
