@@ -1,4 +1,33 @@
 {
-    "tests": [],
+    "tests": [
+        {
+            "score": 0.4,
+            "max_score": 0.4,
+            "name": "test_overdrive.py:test_lint[simulator=verilator]",
+            "output": "",
+            "visibility": "visible"
+        },
+        {
+            "score": 0.1,
+            "max_score": 0.1,
+            "name": "test_overdrive.py:test_style[simulator=verilator]",
+            "output": "",
+            "visibility": "visible"
+        },
+        {
+            "score": 1,
+            "max_score": 1,
+            "name": "test_overdrive.py:test_all[simulator=verilator]",
+            "output": "",
+            "visibility": "visible"
+        },
+        {
+            "score": 1,
+            "max_score": 1,
+            "name": "test_overdrive.py:test_all[simulator=icarus]",
+            "output": "",
+            "visibility": "visible"
+        }
+    ],
     "leaderboard": []
 }

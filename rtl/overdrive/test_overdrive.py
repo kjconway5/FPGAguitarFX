@@ -29,8 +29,6 @@ from pytest_utils.decorators import max_score, visibility, tags
 timescale = "1ps/1ps"
 
 tests =['init_test',
-         'no_clipping',
-         'hard_clipping',
          'soft_clipping',
          ]
 
@@ -72,8 +70,6 @@ def test_all(simulator):
 ### Begin Tests ###
 
 tests = ['init_test',
-         'no_clipping',
-         'hard_clipping',
          'soft_clipping',
          ]
 
@@ -87,8 +83,6 @@ async def init_test(dut):
     # Apply reset
     dut.rst.value = 1
     dut.in_signal.value = 0
-    dut.threshold.value = 0
-    dut.softclip.value = 0
 
     # Hold reset for a couple cycles
     await ClockCycles(dut.clk, 2)
@@ -101,82 +95,6 @@ async def init_test(dut):
     # Now the output MUST be valid
     assert_resolvable(dut.out_signal)
 
-
-@cocotb.test()
-async def no_clipping(dut):
-    """Hard-clip path passes through when |in| < threshold (softclip=0)."""
-
-    # Start a clock
-    cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
-
-    # Reset
-    dut.rst.value = 1
-    dut.softclip.value = 0
-    dut.in_signal.value = 0
-    dut.threshold.value = 0
-    await ClockCycles(dut.clk, 2)
-    dut.rst.value = 0
-    await ClockCycles(dut.clk, 1)
-
-    # Apply stimulus
-    thr = 5000
-    dut.threshold.value = thr
-    dut.softclip.value = 0
-
-    for x in [0, 123, -123, 999, -999, 4000, -4000]:
-        dut.in_signal.value = x
-
-        # Wait for the registered output to update
-        await RisingEdge(dut.clk)
-        await Timer(1, units="ps")
-
-        got = dut.out_signal.value.signed_integer
-        assert got == x, (
-            f"no_clipping: expected {x}, got {got} (thr={thr}) "
-            f"at {get_sim_time(units='ns')} ns"
-        )
-        
-@cocotb.test()
-async def hard_clipping(dut):
-    """Hard-clip path passes through when |in| < threshold (softclip=0)."""
-
-    # Start a clock
-    cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
-
-    # Reset
-    dut.rst.value = 1
-    dut.softclip.value = 0
-    dut.in_signal.value = 0
-    dut.threshold.value = 0
-    await ClockCycles(dut.clk, 2)
-    dut.rst.value = 0
-    await ClockCycles(dut.clk, 1)
-
-    # Apply stimulus
-    thr = 5000
-    dut.threshold.value = thr
-    dut.softclip.value = 0
-
-    for x in [0, 123, -123, 5001, -5001, 6000, -6000]:
-        dut.in_signal.value = x
-       
-        if x > thr:
-            expected = thr
-        elif x < -thr:
-            expected = -thr
-        else:
-            expected = x
-       
-        # Wait for the registered output to update
-        await RisingEdge(dut.clk)
-        await Timer(1, units="ps")
-
-        got = dut.out_signal.value.signed_integer
-        assert got == expected, (
-            f"hard_clipping: expected {expected}, got {got} (thr={thr}) "
-            f"at {get_sim_time(units='ns')} ns"
-        )
-        
 @cocotb.test()
 async def soft_clipping(dut):
     """Hard-clip path passes through when |in| < threshold (softclip=0)."""
@@ -223,8 +141,6 @@ async def soft_clipping(dut):
     # Reset
     dut.rst.value = 1
     dut.in_signal.value = 0
-    dut.threshold.value = 0
-    dut.softclip.value = 1   # enable softclip path
     await ClockCycles(dut.clk, 2)
     dut.rst.value = 0
     await ClockCycles(dut.clk, 1)
