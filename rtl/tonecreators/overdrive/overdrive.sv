@@ -1,5 +1,5 @@
 module overdrive #(
-  parameter int width = 16
+  parameter int width = 24
  ) (
   input logic clk,
   input logic rst,
@@ -11,7 +11,9 @@ module overdrive #(
 
   logic signed [width-1:0] lut_out;
 
-  softclip_lut lut (
+  softclip_lut #(
+    .width(width)
+    ) lut (
     .in_signal(in_signal),
     .out_signal(lut_out)
   );

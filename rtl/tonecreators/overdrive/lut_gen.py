@@ -1,7 +1,7 @@
 import math
 
 N = 256
-WIDTH = 16
+WIDTH = 24
 MAXI = (1 << (WIDTH-1)) - 1  # 32767
 DRIVE = 3.0                  # curve “steepness” inside tanh
 
@@ -19,4 +19,7 @@ for addr in range(N):
     yi = int(round(clamp(y, -1.0, 1.0) * MAXI))
 
     # print SV-friendly signed decimal
-    print(f"8'd{addr:3d} : out_signal = 16'sd{yi};")
+    if yi < 0:
+        print(f"8'd{addr:3d} : out_signal = -{WIDTH}'sd{abs(yi)};")
+    else:
+        print(f"8'd{addr:3d} : out_signal = {WIDTH}'sd{yi};")

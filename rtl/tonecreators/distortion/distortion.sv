@@ -1,5 +1,5 @@
 module distortion #(
-  parameter int width = 16
+  parameter int width = 24
  ) (
   input logic clk,
   input logic rst,
