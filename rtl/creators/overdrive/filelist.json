@@ -1,0 +1,7 @@
+{
+    "top": "overdrive",
+    "files":
+    ["rtl/creators/overdrive/overdrive.sv",
+     "rtl/creators/overdrive/softclip_lut.sv"
+    ]
+}

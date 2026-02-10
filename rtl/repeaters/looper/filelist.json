@@ -1,0 +1,6 @@
+{
+    "top": "distortion",
+    "files":
+    ["rtl/tonecreators/distortion/distortion.sv"
+    ]
+}

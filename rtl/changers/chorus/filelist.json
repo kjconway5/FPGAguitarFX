@@ -1,6 +1,6 @@
 {
     "top": "chorus",
     "files":
-    ["rtl/tonechangers/chorus/chorus.sv"
+    ["rtl/changers/chorus/chorus.sv"
     ]
 }

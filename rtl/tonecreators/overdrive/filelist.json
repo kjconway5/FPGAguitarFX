@@ -1,7 +1,0 @@
-{
-    "top": "overdrive",
-    "files":
-    ["rtl/tonecreators/overdrive/overdrive.sv",
-     "rtl/tonecreators/overdrive/softclip_lut.sv"
-    ]
-}
