@@ -17,9 +17,9 @@ module loop #(
   // out = in + ram[ptr]
 
   // fsm: 
-  // idle - button pressed -> record
-  // record - button pressed -> playback 
-  // playback - button pressed -> idle
+  // idle - button pressed: state -> record
+  // record - button pressed: state -> start playback 
+  // playback - button pressed: state -> idle
 
 
   typedef enum logic [1:0] {
@@ -43,7 +43,7 @@ module loop #(
       end
       RECORD: begin 
         // record signal into ram 
-
+        
 
 
         if(loop_en) begin 

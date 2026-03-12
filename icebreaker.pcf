@@ -24,3 +24,23 @@ set_io -nowarn led_o[2]                27 # L2
 set_io -nowarn led_o[3]                25 # L3
 set_io -nowarn led_o[4]                23 # L4
 set_io -nowarn led_o[5]                21 # L5
+
+# PMOD 1A
+set_io -nowarn ssd_o[0]                 4
+set_io -nowarn ssd_o[1]                 2
+set_io -nowarn ssd_o[2]                47
+set_io -nowarn ssd_o[3]                45
+set_io -nowarn ssd_o[4]                 3
+set_io -nowarn ssd_o[5]                48
+set_io -nowarn ssd_o[6]                46
+set_io -nowarn ssd_o[7]                44
+
+# PMOD 1B
+set_io -nowarn tx_main_clk_o           43 
+set_io -nowarn tx_lr_clk_o             38
+set_io -nowarn tx_data_clk_o           34
+set_io -nowarn tx_data_o               31
+set_io -nowarn rx_main_clk_o           42
+set_io -nowarn rx_lr_clk_o             36
+set_io -nowarn rx_data_clk_o           32
+set_io -nowarn rx_data_i               28

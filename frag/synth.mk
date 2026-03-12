@@ -5,7 +5,7 @@ REPO_ROOT ?= $(shell git rev-parse --show-toplevel)
 
 # If you have the tools installed in a non-standard path,
 # you can override these to specify the path to the executable.
-YOSYS ?= yosys
+YOSYS ?= /usr/bin/yosys
 NETLISTSVG ?= netlistsvg
 RSVG ?= rsvg-convert
 
