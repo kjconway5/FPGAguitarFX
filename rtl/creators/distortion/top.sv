@@ -31,23 +31,24 @@ module top
 
   ,output [5:1] led_o);
 
-   wire        clk_o;
+  wire        clk_o;
 
-   // These two D Flip Flops form what is known as a Synchronizer. We
-   // will learn about these in Week 5, but you can see more here:
-   // https://inst.eecs.berkeley.edu/~cs150/sp12/agenda/lec/lec16-synch.pdf
-   wire reset_n_sync_r;
-   wire reset_sync_r;
-   wire reset_r; // Use this as your reset_signal
+  // These two D Flip Flops form what is known as a Synchronizer. We
+  // will learn about these in Week 5, but you can see more here:
+  // https://inst.eecs.berkeley.edu/~cs150/sp12/agenda/lec/lec16-synch.pdf
+  wire reset_n_sync_r;
+  wire reset_sync_r;
+  wire reset_r; // Use this as your reset_signal
 
-   dff
-     #()
-   sync_a
-     (.clk_i(clk_o)
-     ,.reset_i(1'b0)
-     ,.en_i(1'b1)
-     ,.d_i(reset_n_async_unsafe_i)
-     ,.q_o(reset_n_sync_r));
+  dff
+    #()
+  sync_a 
+  ( .clk_i(clk_o),
+    .reset_i(1'b0),
+    .en_i(1'b1),
+    .d_i(reset_n_async_unsafe_i),
+    .q_o(reset_n_sync_r)
+  );
 
    inv
      #()
@@ -179,22 +180,21 @@ module top
      ,.ready_and_o                      (ready_li)
      );
 
-  if 
-   assign threshold = 24'sd90000000;
+  assign threshold = 24'sd90000000;
 
-   distortion #(
+  distortion #(
     .width(24)
-   ) dist_inst (
-     .clk       (clk_o),
-     .rst       (reset_r),
-     .in_signal (data_left_li),
-     .out_signal(dist_out),
-     .threshold (threshold)
-   );
+  ) dist_inst (
+    .clk       (clk_o),
+    .rst       (reset_r),
+    .in_signal (data_left_li),
+    .out_signal(dist_out),
+    .threshold (threshold)
+  );
 
-   assign valid_lo      = valid_li;
-   assign ready_lo      = ready_li;
-   assign data_left_lo  = dist_out;
-   assign data_right_lo = dist_out;
+  assign valid_lo      = valid_li;
+  assign ready_lo      = ready_li;
+  assign data_left_lo  = dist_out;
+  assign data_right_lo = dist_out;
 
 endmodule

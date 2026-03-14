@@ -14,7 +14,7 @@ module distortion #(
     if (rst) begin 
       out_signal <= '0;
     end else begin 
-      if (in_signal > threshold) begin 
+      if ( in_signal> threshold) begin 
         out_signal <= threshold;
       end else if (in_signal < -threshold) begin 
         out_signal <= -threshold;
