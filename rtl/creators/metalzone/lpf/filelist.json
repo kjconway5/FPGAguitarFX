@@ -1,0 +1,11 @@
+{
+    "top": "lpf",
+    "files":
+    ["rtl/creators/metalzone/lpf/lpf.sv"
+     ,"provided/sipo.sv"
+     ,"provided/piso.sv"
+     ,"provided/dff.sv"
+     ,"provided/inv.sv"
+     ,"provided/axis_i2s2_synth.v"
+    ]
+}
