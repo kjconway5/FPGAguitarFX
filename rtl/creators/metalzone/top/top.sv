@@ -1,5 +1,5 @@
 // Top-level design file for the icebreaker FPGA board
-module top
+ module top
   (input [0:0] clk_12mhz_i
   // n: Negative Polarity (0 when pressed, 1 otherwise)
   // async: Not synchronized to clock
@@ -144,6 +144,9 @@ module top
 
    wire signed [23:0] threshold;
    wire signed [23:0] dist_out;
+   wire signed [23:0] lpf1_out;
+   wire signed [23:0] lpf2_out;
+   wire signed [23:0] hpf_out;
 
    // Serial in, Parallel out
    sipo
@@ -182,19 +185,51 @@ module top
 
   assign threshold = 24'sd90000000;
 
+  hpf #(
+    .width(24) 
+   ) hpf1 (
+    .clk(clk_o),
+    .reset(reset_r),
+    .valid(1'b1),
+    .line_in(data_left_li),
+    .line_out(hpf_out)
+);
+
   distortion #(
     .width(24)
   ) dist_inst (
     .clk       (clk_o),
     .rst       (reset_r),
-    .in_signal (data_left_li),
+    .in_signal (hpf_out),
     .out_signal(dist_out),
     .threshold (threshold)
   );
 
+  lpf #(
+    .width(24) 
+   ) lpf1 (
+    .clk(clk_o),
+    .reset(reset_r),
+    .valid(1'b1),
+    .line_in(dist_out),
+    .line_out(lpf1_out)
+  );
+
+lpf #(
+    .width(24) 
+   ) lpf2 (
+    .clk(clk_o),
+    .reset(reset_r),
+    .valid(1'b1),
+    .line_in(lpf1_out),
+    .line_out(lpf2_out)
+  );
+
+
   assign valid_lo      = valid_li;
   assign ready_lo      = ready_li;
-  assign data_left_lo  = dist_out;
-  assign data_right_lo = dist_out;
+  assign data_left_lo  = lpf2_out;
+  assign data_right_lo = lpf2_out;
+
 
 endmodule

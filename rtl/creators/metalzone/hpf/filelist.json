@@ -1,7 +1,7 @@
 {
-    "top": "distortion",
+    "top": "hpf",
     "files":
-    ["rtl/creators/distortion/distortion.sv"
+    ["rtl/creators/metalzone/hpf/hpf.sv"
      ,"provided/sipo.sv"
      ,"provided/piso.sv"
      ,"provided/dff.sv"
