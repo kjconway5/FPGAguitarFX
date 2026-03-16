@@ -2,6 +2,9 @@ import git
 import os
 import sys
 import git
+        
+import numpy as np
+from scipy.io.wavfile import write
 
 # I don't like this, but it's convenient.
 _REPO_ROOT = git.Repo(search_parent_directories=True).working_tree_dir
@@ -31,6 +34,7 @@ timescale = "1ps/1ps"
 tests =['init_test',
          'no_clipping',
          'hard_clipping',
+         'export_wav_distortion'
          ]
 
 
@@ -73,6 +77,7 @@ def test_all(simulator):
 tests = ['init_test',
          'no_clipping',
          'hard_clipping',
+         'export_wav_distortion'
          ]
 
 @cocotb.test()
@@ -169,4 +174,45 @@ async def hard_clipping(dut):
             f"hard_clipping: expected {expected}, got {got} (thr={thr}) "
             f"at {get_sim_time(units='ns')} ns"
         )
-        
+
+@cocotb.test()
+async def export_wav_distortion(dut):
+    sample_rate = 48000
+    freq = 440
+    duration = 1.0
+
+    cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+
+    dut.rst.value = 1
+    dut.in_signal.value = 0
+    dut.threshold.value = 6000000
+
+    await ClockCycles(dut.clk, 5)
+    dut.rst.value = 0
+    await ClockCycles(dut.clk, 1)
+
+    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+    sine = 0.9 * np.sin(2 * np.pi * freq * t)
+
+    scale = 2**23 - 1
+    input_samples = (sine * scale).astype(int)
+
+    output_samples = []
+
+    for s in input_samples:
+        dut.in_signal.value = int(s)
+
+        await RisingEdge(dut.clk)
+        await Timer(1, units="ps")
+
+        out_val = dut.out_signal.value.signed_integer
+        output_samples.append(out_val)
+
+    output_samples = np.array(output_samples)
+
+    input_float = input_samples / scale
+    output_float = output_samples / scale
+
+    write("input.wav", sample_rate, input_float.astype(np.float32))
+    write("output.wav", sample_rate, output_float.astype(np.float32))
+    
