@@ -25,9 +25,9 @@ module lpf
     // MIGHT NEED TO CHANGE BIT widthS TO AVOID OVERFLOW
 
     logic signed [width-1:0] prev_line_out;
-    logic signed [width-1:0] diff;
-    logic signed [width-1:0] scaled;
-    logic signed [width-1:0] temp_out;
+    logic signed [width:0] diff;
+    logic signed [width+1:0] scaled;
+    logic signed [width+1:0] temp_out;
 
     always_ff @(posedge clk) begin  
         if (reset) begin 
@@ -41,7 +41,7 @@ module lpf
 
     always_comb begin
         diff = line_in - prev_line_out;
-        scaled = diff >>> 4;
+        scaled = diff >>> 3;
         temp_out = prev_line_out + scaled;
     end
 

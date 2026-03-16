@@ -4,7 +4,6 @@ module hpf #(
     input logic clk,
     input logic reset,
     input logic valid,
-    
     input logic signed [width-1:0] line_in,
     output logic signed [width-1:0] line_out
 );
@@ -24,9 +23,9 @@ module hpf #(
     logic signed [width-1:0] prev_line_out;
     logic signed [width-1:0] prev_line_in;
 
-    logic signed [width-1:0] diff;
-    logic signed [width-1:0] sum;
-    logic signed [width-1:0] temp_out;
+    logic signed [width:0]   diff;
+    logic signed [width+1:0] sum;
+    logic signed [width+1:0] temp_out;
 
     always_ff @(posedge clk) begin  
         if (reset) begin 
@@ -43,7 +42,7 @@ module hpf #(
     always_comb begin
         diff = line_in - prev_line_in;
         sum = prev_line_out + diff;
-        temp_out = sum - (sum >>> 6);
+        temp_out = sum - (sum >>> 4);
     end
 
 endmodule

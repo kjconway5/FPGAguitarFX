@@ -183,14 +183,19 @@
      ,.ready_and_o                      (ready_li)
      );
 
-  assign threshold = 24'sd90000000;
+  // assign threshold = 24'sd1500000;
+  // assign threshold = 24'sd1000000;
+  assign threshold = 24'sd700000;
+
+
+
 
   hpf #(
     .width(24) 
    ) hpf1 (
     .clk(clk_o),
     .reset(reset_r),
-    .valid(1'b1),
+    .valid(valid_li),
     .line_in(data_left_li),
     .line_out(hpf_out)
 );
@@ -210,8 +215,8 @@
    ) lpf1 (
     .clk(clk_o),
     .reset(reset_r),
-    .valid(1'b1),
-    .line_in(dist_out),
+    .valid(valid_li),
+    .line_in(hpf_out),
     .line_out(lpf1_out)
   );
 
@@ -220,7 +225,7 @@ lpf #(
    ) lpf2 (
     .clk(clk_o),
     .reset(reset_r),
-    .valid(1'b1),
+    .valid(valid_li),
     .line_in(lpf1_out),
     .line_out(lpf2_out)
   );
@@ -228,8 +233,17 @@ lpf #(
 
   assign valid_lo      = valid_li;
   assign ready_lo      = ready_li;
-  assign data_left_lo  = lpf2_out;
-  assign data_right_lo = lpf2_out;
 
+  // assign data_left_lo  = hpf_out;
+  // assign data_right_lo = hpf_out;
+
+  // assign data_left_lo  = dist_out;
+  // assign data_right_lo = dist_out;
+
+  assign data_left_lo  = lpf1_out;
+  assign data_right_lo = lpf1_out;
+
+  // assign data_left_lo  = lpf2_out;
+  // assign data_right_lo = lpf2_out;
 
 endmodule
