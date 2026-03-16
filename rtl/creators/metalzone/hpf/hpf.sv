@@ -42,7 +42,7 @@ module hpf #(
     always_comb begin
         diff = line_in - prev_line_in;
         sum = prev_line_out + diff;
-        temp_out = sum - (sum >>> 4);
+        temp_out = sum - (sum >>> 2);
     end
 
 endmodule

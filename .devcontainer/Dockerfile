@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y npm yosys
 RUN cd /opt && git clone https://github.com/nturley/netlistsvg
 RUN cd /opt/netlistsvg && npm install --legacy-peer-deps && npm install . -g
 
+RUN pip install numpy scipy matplotlib
+
 ENV YOSYSHQ_LICENSE="/usr/local/bin/tabby/license/yosyshq.lic"
 
 # Non-root user for normal builds

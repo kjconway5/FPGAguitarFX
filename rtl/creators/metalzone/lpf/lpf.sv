@@ -41,7 +41,7 @@ module lpf
 
     always_comb begin
         diff = line_in - prev_line_out;
-        scaled = diff >>> 3;
+        scaled = diff >>> 2;
         temp_out = prev_line_out + scaled;
     end
 

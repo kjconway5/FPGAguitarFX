@@ -185,10 +185,7 @@
 
   // assign threshold = 24'sd1500000;
   // assign threshold = 24'sd1000000;
-  assign threshold = 24'sd700000;
-
-
-
+  assign threshold = 24'sd500000;
 
   hpf #(
     .width(24) 
@@ -220,17 +217,6 @@
     .line_out(lpf1_out)
   );
 
-lpf #(
-    .width(24) 
-   ) lpf2 (
-    .clk(clk_o),
-    .reset(reset_r),
-    .valid(valid_li),
-    .line_in(lpf1_out),
-    .line_out(lpf2_out)
-  );
-
-
   assign valid_lo      = valid_li;
   assign ready_lo      = ready_li;
 
@@ -242,8 +228,5 @@ lpf #(
 
   assign data_left_lo  = lpf1_out;
   assign data_right_lo = lpf1_out;
-
-  // assign data_left_lo  = lpf2_out;
-  // assign data_right_lo = lpf2_out;
 
 endmodule
